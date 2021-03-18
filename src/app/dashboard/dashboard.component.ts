@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   userInfo;
   dataRecieved:boolean = true;
   imgREGEXP = '^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|png)$';
-  defaultIMG: string = '../../assets/DefaultUser.svg';
+  defaultIMG: string = '../../Task-App/assets/DefaultUser.svg';
   ngOnInit(): void {
     this.getUserData();
   }
