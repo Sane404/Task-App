@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig = {
+  firebaseConfig :{
     apiKey: "AIzaSyDx1R3Mx0fzX52SM9Tp-PhmZAflUeWvPbs",
     authDomain: "taskapp-8deda.firebaseapp.com",
     projectId: "taskapp-8deda",

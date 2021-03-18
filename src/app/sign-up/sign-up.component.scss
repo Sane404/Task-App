@@ -1,0 +1,48 @@
+.container{
+    width: 100%;
+    height: calc(100vh - 62px);
+    background-image: url('../../assets/login_bg.png');
+    background-size: cover;
+    position: relative;
+    .forms_wrap{
+        position: absolute;
+        right:50px;
+        width: 300px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.5);
+        .signUp,.signIn{
+            padding: 10px;
+            h3{
+                text-align: center;
+            }
+            .formGroup{
+                display: flex;
+                flex-direction: column;
+                margin: 10px 0;
+                input{
+                    margin-top: 10px;
+                    padding: 5px;
+                }
+            }
+            span{
+                b{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+            button{
+                margin-top: 10px;
+                padding: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+@media(max-width:600px){
+    .forms_wrap{
+        position: static !important;
+        margin:0 auto ;
+    }
+}

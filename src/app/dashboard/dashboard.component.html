@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="loaded">
+        <div class="loading" *ngIf = '!dataRecieved'>
+            <img src="../../assets/loading.gif">
+        </div>
+        <div class="loaded" *ngIf = 'dataRecieved'>
+            <img [src]="userInfo?.photoURL ? userInfo.photoURL : defaultIMG" class = 'userIMG'>
+        <div class="details">
+            <div class="username">Username: {{userInfo?.displayName}}</div>
+            <div class="email">Email: {{userInfo?.email}}</div>
+            <div class="user_id">ID: {{userInfo?.uid}}</div>
+            <div class="tasks_left" *ngIf='userInfo?.tasks'>Tasks left: {{userInfo?.tasks?.length}}</div>
+        </div>
+        </div>
+        
+    </div>
+    <form [formGroup]='updateData' (ngSubmit)='submit(updateData)'>
+        <fieldset>
+            <legend>Update username</legend>
+            <div class="f_g">
+                <input type="text" id='username' formControlName='username'>
+                <div class="error" *ngIf="username.invalid && (username.dirty || username.touched)">
+                    <div *ngIf="username.errors?.required">
+                        Field required
+                    </div>
+                    <div *ngIf="username.errors?.pattern">
+                        No spaces and special symbols allowed
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Update profile image</legend>
+            <div class="f_g">
+                <input type="url" id='userPhoto' formControlName='imgURL' placeholder="http(s)://example.jpg">
+                <div class="error" *ngIf="imgURL.invalid && (imgURL.dirty || imgURL.touched)">
+                    <div *ngIf="imgURL.errors?.required">
+                        Field required
+                    </div>
+                    <div *ngIf="imgURL.errors?.pattern">
+                        .jpg or .png format is allowed
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <button>Update</button>
+    </form>
+</div>

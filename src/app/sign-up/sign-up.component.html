@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="forms_wrap">
+    <div class="signUp" *ngIf='showRegisterForm'>
+        <h3>Register</h3>
+        <div class="formGroup">
+            <label for="email_signUP">Email</label>
+            <input type="email" #email_signUP>
+        </div>
+        <div class="formGroup">
+            <label for="password_signUP">Password</label>
+            <input type="password" #password_signUP>
+        </div>
+        <span>Already have an account ? <b (click)='switchForms()'>Sign In</b></span>
+        <button (click)='auth.regUser(email_signUP.value,password_signUP.value)'>Register</button>
+    </div>
+    <div class="signIn" *ngIf='!showRegisterForm'>
+        <h3>Sign In</h3>
+        <div class="formGroup">
+            <label for="email_signIN">Email</label>
+            <input type="email" #email_signIN>
+        </div>
+        <div class="formGroup">
+            <label for="password_signIN">Password</label>
+            <input type="password" #password_signIN>
+        </div>
+        <span>Don't have an account ? <b (click)='switchForms()'>Register</b></span>
+        <button (click)='auth.signInUser(email_signIN.value,password_signIN.value)'>Sign In</button>
+    </div>
+</div>
+</div>

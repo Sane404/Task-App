@@ -1,0 +1,53 @@
+<div class="container">
+    
+    <div class="tasks">
+        <div class="task_creation">
+            <form [formGroup] = 'task' (ngSubmit)='submit(task)' *ngIf = 'formVisible'>
+                <span (click) = 'formVisibility()' class="close-form">&#10006;</span>
+                <div class="task_name">
+                    <label for="task_name">Task Name</label>
+                    <input type="text" id = 'task_name' formControlName = 'task_name' placeholder="Start coding">
+                    <div class="error" *ngIf="taskname.invalid && (taskname.dirty || taskname.touched)">
+                        <div *ngIf="taskname.errors?.required">
+                            Field required
+                        </div>
+                        <div *ngIf="taskname.errors?.pattern">
+                            Use words and spaces (don't use spaces after the last word)
+                        </div>
+                    </div>
+                </div>
+                <div class="task_priority">
+                    <h2>Task Priority</h2>
+                    <label *ngFor = 'let item of selectOptions;index as i'>
+                        <input type="radio" [value] ="item" formControlName="prio" *ngIf = 'i != 0 && i != 1'>
+                        <span *ngIf = 'i != 0 && i != 1'>{{item}}</span>
+                    </label>
+                </div>
+            <button>Add Task</button>
+            </form>
+        </div>
+        <div class="create_and_filter">
+            <span class="add-task" (click) = 'formVisibility()' *ngIf = '!formVisible'>&#10010;</span>
+            <select name="prio" id="filter" (change) = 'filter($event)'>
+                <option [value]="item" *ngFor = 'let item of selectOptions;index as i' [selected]='i == 0' [disabled]='i == 0' [hidden]='i == 0' >{{item}}</option>
+            </select>
+        </div>
+        
+        <div class="tasks_wrap">
+            <div class="task" *ngFor='let item of tasks' [ngClass]  = 'item.priority.toLowerCase()'>
+                <div class="task_name" [ngClass]="{'completed': item.completed}">
+                    {{item.task}}
+                </div>
+                <div class="time">Added at {{getTime(item.time.seconds)}}</div>
+                <input type="checkbox" name="completed" id="completed" [checked] = 'item.completed' (change) = 'checkBoxValue($event,item)'>Completed
+                <span (click) = 'removeTask(item)'>&#10006;</span>
+                
+            </div>
+        </div>
+        
+        <div class="no_tasks" *ngIf='tasks?.length == 0'>
+            NO TASKS AVAILABLE<br>
+            ADD TASKS BY CLICKING "+" AT TOP LEFT CORNER
+        </div>
+    </div>
+</div>
